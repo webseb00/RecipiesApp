@@ -5,9 +5,153 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recipies App</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
-    <!-- <link rel="stylesheet" href="./styles/styles.css"> -->
+    <link rel="stylesheet" href="./styles/styles.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;600&display=swap" rel="stylesheet">
   </head>
   <body>
-    <div id="app"></div>
+    <div class="container box">
+      <!-- HEADER SECTION -->
+      <header class="header">
+        <div class="header__logo">
+          <h1 class="header__title">Recipies<span>App</span></h1>
+        </div>
+        <div class="header__search">
+          <input 
+            type="text" 
+            id="search-field" 
+            class="header__search-input input is-rounded is-medium" 
+            placeholder="Search over 1,000,000 recipies..." 
+          />
+          <button type="button" class="header__search-button button is-info is-rounded is-medium">
+            <ion-icon name="search-outline" class="header__search-icon"></ion-icon>
+            Search
+          </button>
+          <div class="header__shadow"></div>
+        </div>
+      </header>
+      <!-- END OF HEADER SECTION -->
+      <!-- MAIN APP CONTENT -->
+      <div class="columns is-gapless">
+        <div class="column is-3 results">
+          <ul class="results__list">
+            <li class="results__item">
+              <img src="./images/pizza.jpg" alt="Result image" class="results__img" />
+              <div class="results__info">
+                <h5 class="results__title">
+                  <span>Best Pizza Ever</span>
+                </h5>
+                <p class="results__text">101 Cookbooks</p>
+              </div>
+            </li>
+            <li class="results__item">
+              <img src="./images/cake.jpg" alt="Result image" class="results__img" />
+              <div class="results__info">
+                <h5 class="results__title">
+                  <span>The best chocolate cake</span>
+                </h5>
+                <p class="results__text">The pioneer woman</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="column is-6 meal">
+          <div class="meal__header">
+            <img src="./images/pizza.jpg" class="meal__img" />
+            <span class="meal__bg"></span>
+            <h2 class="meal__title--h2">
+              <span>best pizza ever</span>
+            </h3>
+          </div>
+          <div class="meal__info"></div>
+          <div class="meal__ingredients">
+            <ul class="meal__list">
+              <li class="meal__item">
+                <ion-icon class="meal__icon" name="checkmark-circle-outline"></ion-icon>
+                4 1/2 cups (20.25 ounces) unbleached high-gluten, bread, or all-purpose flour, chilled
+              </li>
+              <li class="meal__item">
+                <ion-icon class="meal__icon" name="checkmark-circle-outline"></ion-icon>
+                1 3/4 (.44 ounce) teaspoons salt
+              </li>
+              <li class="meal__item">
+                <ion-icon class="meal__icon" name="checkmark-circle-outline"></ion-icon>
+                1 3/4 cup water, ice cold
+              </li>
+              <li class="meal__item">
+                <ion-icon class="meal__icon" name="checkmark-circle-outline"></ion-icon>
+                1 3/4 tsp salt
+              </li>
+              <li class="meal__item">
+                <ion-icon class="meal__icon" name="checkmark-circle-outline"></ion-icon>
+                1 3/4 cups (14 ounces) water, ice cold (40F)
+              </li>
+              <li class="meal__item">
+                <ion-icon class="meal__icon" name="checkmark-circle-outline"></ion-icon>
+                Semolina flour OR cornmeal for dusting
+              </li>
+            </ul>
+            <button type="button" class="button is-rounded is-info meal__button-add">
+              <ion-icon name="cart-outline"></ion-icon>
+              Add to shopping list
+            </button> 
+          </div>
+          <div class="meal__instruction">
+            <h5 class="title--h5">How to cook it</h5>
+            <p class="meal__text">This recipe was carefully designed and tested by <strong>101 Cookbooks</strong>.
+            <br />
+            Please check out directions at their website.</p>
+            <button type="button" class="button is-rounded is-info meal__button-directions">
+              directions
+              <ion-icon name="caret-forward-outline"></ion-icon>
+            </button>
+          </div>
+        </div>
+        <div class="column is-3 shopping">
+          <div class="shopping__header">
+            <h5 class="title--h5">My shopping list</h5>
+          </div>
+          <ul class="shopping__list">
+            <button type="button" id="delete-all-items" class="button is-rounded is-info delete-all-btn">
+              delete all items
+            </button>
+            <li class="shopping__item">
+              <div>
+                <input type="number" name="number" min="0" class="shopping__input" id="input-quantity" />
+                <label for="input-quantity" class="shopping__unit">cup</label>
+              </div>
+              <p class="shopping__ingredients">
+                unbleached high-gluten, bread, or all-purpose flour, chilled
+              </p>
+              <button class="delete" id="delete-item"></button>
+            </li>
+            <li class="shopping__item">
+              <div>
+                <input type="number" name="number" min="0" class="shopping__input" id="input-quantity" />
+                <label for="input-quantity" class="shopping__unit">cup</label>
+              </div>
+              <p class="shopping__ingredients">
+                water, ice cold
+              </p>
+              <button class="delete" id="delete-item"></button>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- END OF MAIN APP CONTENT -->
+      <!-- FOOTER -->
+      <footer class="footer">
+        <div class="footer__content">
+          <h5 class="footer__header">RecipiesApp powered by <a href="forkify-api.herokuapp.com" class="footer__link" target="_blank">forkify-api.herokuapp.com</a></h5>
+          <p class="footer__text">
+            Project was inspired by <b>ForkifyApp</b>
+            <ion-icon class="icon has-text-danger footer__icon" name="heart"></ion-icon>
+          </p>
+        </div>
+      </footer>
+    </div>
+    <!-- SCRIPTS -->
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
   </body>
 </html>
