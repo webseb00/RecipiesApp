@@ -24,7 +24,7 @@
             class="header__search-input input is-rounded is-medium" 
             placeholder="Search over 1,000,000 recipies..." 
           />
-          <button type="button" class="header__search-button button is-info is-rounded is-medium">
+          <button type="button" id="search-button" class="header__search-button button is-info is-rounded is-medium">
             <ion-icon name="search-outline" class="header__search-icon"></ion-icon>
             Search
           </button>
@@ -36,7 +36,7 @@
       <div class="columns is-gapless">
         <div class="column is-3 results">
           <ul class="results__list">
-            <li class="results__item">
+            <!-- <li class="results__item">
               <img src="./images/pizza.jpg" alt="Result image" class="results__img" />
               <div class="results__info">
                 <h5 class="results__title">
@@ -53,11 +53,11 @@
                 </h5>
                 <p class="results__text">The pioneer woman</p>
               </div>
-            </li>
+            </li> -->
           </ul>
         </div>
         <div class="column is-6 meal">
-          <div class="meal__header">
+          <!-- <div class="meal__header">
             <img src="./images/pizza.jpg" class="meal__img" />
             <span class="meal__bg"></span>
             <h2 class="meal__title--h2">
@@ -106,14 +106,14 @@
               directions
               <ion-icon name="caret-forward-outline"></ion-icon>
             </button>
-          </div>
+          </div> -->
         </div>
         <div class="column is-3 shopping">
           <div class="shopping__header">
             <h5 class="title--h5">My shopping list</h5>
           </div>
           <ul class="shopping__list">
-            <button type="button" id="delete-all-items" class="button is-rounded is-info delete-all-btn">
+            <!-- <button type="button" id="delete-all-items" class="button is-rounded is-info delete-all-btn">
               delete all items
             </button>
             <li class="shopping__item">
@@ -135,7 +135,7 @@
                 water, ice cold
               </p>
               <button class="delete" id="delete-item"></button>
-            </li>
+            </li> -->
           </ul>
         </div>
       </div>
@@ -143,7 +143,7 @@
       <!-- FOOTER -->
       <footer class="footer">
         <div class="footer__content">
-          <h5 class="footer__header">RecipiesApp powered by <a href="forkify-api.herokuapp.com" class="footer__link" target="_blank">forkify-api.herokuapp.com</a></h5>
+          <h5 class="footer__header">RecipiesApp powered by <a href="https://forkify-api.herokuapp.com/" class="footer__link" target="_blank">forkify-api.herokuapp.com</a></h5>
           <p class="footer__text">
             Project was inspired by <b>ForkifyApp</b>
             <ion-icon class="icon has-text-danger footer__icon" name="heart"></ion-icon>
@@ -153,5 +153,6 @@
     </div>
     <!-- SCRIPTS -->
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+    <script src="https://unpkg.com/regenerator-runtime@0.13.1/runtime.js"></script>
   </body>
 </html>
