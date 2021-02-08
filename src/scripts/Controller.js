@@ -16,15 +16,22 @@ class Controller {
     this.view.searchButton.addEventListener('click', () => handleGetData());
 
     const handleGetData = () => {
-      // show loader on the screen
-      this.view.showLoader(this.view.resultsList);
-      // get typed value from input
+      const regexp = /[a-zA-Z]+/g;
+      // get input value and if it is proper
       const inputValue = this.view.searchInput.value;
-      // clear input value 
-      this.view.clearSearchInput();
-      this.model.searchData(inputValue).then(response => {
-        this.handleReceivedData(response);
-      });
+      if(!regexp.test(inputValue)) { 
+        alert('Search field can only contain characters from A to Z');
+        return false;
+      } else {
+        // show loader 
+        this.view.showLoader(this.view.resultsList);
+        // clear input value 
+        this.view.clearSearchInput();
+        this.model.searchData(inputValue).then(response => {
+          this.handleReceivedData(response);
+        });
+      }
+      
       // after appending list to the DOM, attach event listener to the list element
       this.view.resultsList.addEventListener('click', e => this.handleProductDetails(e));
     }
