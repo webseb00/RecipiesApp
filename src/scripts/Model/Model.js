@@ -5,6 +5,7 @@ class Model {
     this.data = [];
     this.product = [];
     this.ingredients = [];
+    this.favouriteProducts = [];
   }
   // get data based on typed query
   async searchData(query) {

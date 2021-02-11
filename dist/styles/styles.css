@@ -62,11 +62,16 @@ body {
 /* HEADER STYLES */
 
 .header {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 80px;
+  align-items: center;
   background: #ecf0f1;
   border-bottom: 1px solid var(--light-grey);
+}
+
+.header__logo {
+  margin-left: 20px;
 }
 
 .header__title {
@@ -148,12 +153,15 @@ body {
   width: 100%;
 }
 
-.results__img,
-.results__info {
+.results__box,
+.results__info,
+.favourite__box,
+.favourite__info {
   pointer-events: none;
 }
 
-.results__item {
+.results__item,
+.favourite__item {
   display: flex;
   align-items: center;
   padding: 10px;
@@ -168,11 +176,13 @@ body {
   transform: translateX(-5px);
 }
 
-.results__box {
+.results__box,
+.favourite__box {
   margin-right: 10px;
 }
 
-.results__img {
+.results__img,
+.favourite__img {
   display: block;
   border-radius: 50%;
   width: 60px;
@@ -181,7 +191,8 @@ body {
   object-fit: cover;
 }
 
-.results__title {
+.results__title,
+.favourite__title {
   font-size: 16px;
   line-height: 20px;
   text-transform: uppercase;
@@ -189,14 +200,73 @@ body {
   color: var(--white-color);
 }
 
-.results__title span {
+.results__title span,
+.favourite__title span {
   background: var(--primary-color);
 }
 
-.results__text {
+.results__text,
+.favourite__text {
   font-size: 12px;
   text-transform: uppercase;
   font-weight: bold;
+}
+
+/* favourite products list */
+
+.favourite {
+  position: relative;
+  align-self: stretch;
+  justify-self: flex-end;
+  width: 80px;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: all .4s;
+}
+
+.favourite.show,
+.favourite:hover .favourite__list {
+  opacity: 1;
+  visibility: visible;
+}
+
+.favourite:hover .favourite__list {
+  pointer-events: auto;
+}
+
+.favourite:hover {
+  background: rgba(0,0,0,.1);
+}
+
+.favourite__icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.favourite__icon ion-icon {
+  display: block;
+  font-size: 44px;
+  color: #e74c3c;
+}
+
+.favourite__list {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 280px;
+  background: #ecf0f1;
+  z-index: 99;
+  transition: all .4s;
+  pointer-events: none;
+}
+
+.favourite__item:hover {
+  background: var(--light-grey);
 }
 
 /* meal container */
@@ -210,6 +280,25 @@ body {
 .meal__header {
   position: relative;
   height: 340px;
+}
+
+.meal__favourite {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  opacity: .6;
+  transition: all .4s;
+  cursor: pointer;
+}
+
+.meal__favourite:hover {
+  transform: scale(1.2);
+  opacity: 1;
+}
+
+.meal__favourite ion-icon {
+  font-size: 52px;
+  color: #e74c3c;
 }
 
 .meal__img {

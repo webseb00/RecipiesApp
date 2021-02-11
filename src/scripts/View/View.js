@@ -5,17 +5,24 @@ class View {
     this.resultsList = document.querySelector('.results__list');
     this.mealContainer = document.querySelector('.meal');
     this.shoppingList = document.querySelector('.shopping__list');
-    // delete shopping list button
+    this.favouriteProducts = document.querySelector('.favourite');
+    this.favouriteProductsList = document.querySelector('.favourite__list');
     this.addToListButton = null;
     this.deleteAllItemsButton = null;
     this.deleteListItem = null;
+    this.favouriteProductIcon = null;
+    this.favouriteProductsItem = null;
+  }
+
+  getSearchInputValue() {
+    return this.searchInput.value;
   }
 
   generateProductList(data) {
     let listItemsMarkup = '';
     data.forEach(el => {
       const { recipe_id, image_url, title, publisher } = el;
-      listItemsMarkup += `<li id=${recipe_id} class="results__item">
+      listItemsMarkup += `<li data-id=${recipe_id} class="results__item">
                             <div class="results__box">
                               <img src=${image_url} alt="Result image" class="results__img" />
                             </div>
@@ -33,14 +40,17 @@ class View {
   }
 
   generateProductDetails(product) {
-    const { image_url, ingredients, title, publisher, source_url } = product;
+    const { recipe_id, image_url, ingredients, title, publisher, source_url } = product;
     let productDetailsMarkup = `
-      <div class="meal__header">
+      <div data-id=${recipe_id} class="meal__header">
         <img src=${image_url} class="meal__img" />
         <span class="meal__bg"></span>
         <h2 class="meal__title--h2">
           <span>${title}</span>
-        </h3>
+        </h2>
+        <span class="meal__favourite">
+          <ion-icon class="like-icon" name="heart-circle-outline"></ion-icon>
+        </span>
       </div>
       <div class="meal__info"></div>
       <div class="meal__ingredients">
@@ -72,6 +82,7 @@ class View {
 
     this.removeLoader();
     this.mealContainer.insertAdjacentHTML('afterbegin', productDetailsMarkup);
+    this.favouriteProductIcon = document.querySelector('.meal__favourite');
   }
 
   generateShoppingList(items) {
@@ -95,7 +106,7 @@ class View {
           <p class="shopping__ingredients">
             ${el}
           </p>
-          <button class="delete" data-id="delete-button"></button>
+          <button class="delete" data-button="delete-button"></button>
         </li>
       `;
     });
@@ -103,8 +114,37 @@ class View {
     this.shoppingList.insertAdjacentHTML('afterbegin', listItemMarkup);
     this.shoppingList.prepend(deleteBtn);
 
-    this.deleteListItem = document.querySelectorAll('button[data-id]');
+    this.deleteListItem = document.querySelectorAll('button[data-button]');
     this.deleteAllItemsButton = document.querySelector('#delete-all-items');
+  }
+
+  generateFavouriteProductsList(items) {
+    this.favouriteProductsList.innerHTML = '';
+
+    let listItemMarkup = '';
+    items.forEach(el => {
+      const { recipe_id, image_url, title, publisher } = el;
+      listItemMarkup += `
+      <li data-id=${recipe_id} class="favourite__item">
+        <div class="favourite__box">
+          <img src=${image_url} alt="Result image" class="favourite__img" />
+        </div>
+        <div class="favourite__info">
+          <h5 class="favourite__title">
+            <span>${title}</span>
+          </h5>
+          <p class="favourite__text">${publisher}</p>
+        </div>
+      </li>
+      `;
+    });
+
+    this.favouriteProductsList.insertAdjacentHTML('afterbegin', listItemMarkup);
+    this.favouriteProductsItem = document.querySelectorAll('.favourite__item');
+  }
+
+  clearProductDetailsContainer() {
+    this.mealContainer.innerHTML = '';
   }
 
   clearShoppingList() {
@@ -117,6 +157,10 @@ class View {
     this.searchInput.value = '';
   }
 
+  displayAlertBox(str) {
+    alert(str);
+  }
+
   showLoader(node) {
     node.innerHTML = '';
     const loaderMarkup = 
@@ -127,8 +171,8 @@ class View {
   }
 
   removeLoader() {
-    const loader = document.querySelector('.loader');
-    loader.remove();
+    const loader = document.querySelector('.loader-wrapper');
+    if(loader) { loader.remove(); }
   }
 }
 
